@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: medassist-care
+    runtime: node
+    plan: free
+    autoDeploy: true
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: ESCALATION_MINUTES
+        value: "5"
+      - key: SESSION_TTL_MS
+        value: "604800000"
+      - key: API_TIMEOUT_MS
+        value: "12000"
+      - key: SWEEP_INTERVAL_MS
+        value: "30000"
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: medassist
+      - key: HOST
+        value: 0.0.0.0
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_SMS_FROM
+        sync: false
+      - key: TWILIO_MESSAGING_SERVICE_SID
+        sync: false
